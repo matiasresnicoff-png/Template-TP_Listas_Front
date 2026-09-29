@@ -27,7 +27,7 @@ function mostrarComidas() {
       <h2>${comida.nombre}</h2>
       <p>Categoría: ${comida.categoria}</p>
       <p>Provincia: ${comida.provincia}</p>
-      <p>Ingredientes: ${comida.ingrediente}</p>
+      <p>Ingredientes: ${comida.ingredientes}</p>
     `;
 
     container.appendChild(tarjeta);
