@@ -24,10 +24,10 @@ function mostrarComidas() {
     const tarjeta = document.createElement('article');
 
     tarjeta.innerHTML = `
-      <h2>${comida.COMPLETAR}</h2>
-      <p>Categoría: ${comida.COMPLETAR}</p>
-      <p>Provincia: ${comida.COMPLETAR}</p>
-      <p>Ingredientes: ${comida.COMPLETAR}</p>
+      <h2>${comida.nombre}</h2>
+      <p>Categoría: ${comida.categoria}</p>
+      <p>Provincia: ${comida.provincia}</p>
+      <p>Ingredientes: ${comida.ingrediente}</p>
     `;
 
     container.appendChild(tarjeta);
