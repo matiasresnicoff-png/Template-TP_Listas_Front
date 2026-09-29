@@ -24,9 +24,10 @@ function mostrarComidas() {
     const tarjeta = document.createElement('article');
 
     tarjeta.innerHTML = `
-      <img src="${comida.COMPLETAR}" alt="${comida.COMPLETAR}">
       <h2>${comida.COMPLETAR}</h2>
-      <p>${comida.COMPLETAR}</p>
+      <p>Categoría: ${comida.COMPLETAR}</p>
+      <p>Provincia: ${comida.COMPLETAR}</p>
+      <p>Ingredientes: ${comida.COMPLETAR}</p>
     `;
 
     container.appendChild(tarjeta);
