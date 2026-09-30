@@ -16,37 +16,9 @@
   padding: 16px;
   width: 260px;
 }
-
-.addFood {
-  padding: COMPLETAR;
-}
-
 .addFood form {
   display: COMPLETAR;
   flex-direction: COMPLETAR;
   gap: COMPLETAR;
   max-width: COMPLETAR;
-}
-
-.addFood label {
-  font-weight: COMPLETAR;
-}
-
-.addFood input {
-  padding: COMPLETAR;
-  border: COMPLETAR;
-  border-radius: COMPLETAR;
-}
-
-.addFood button {
-  padding: COMPLETAR;
-  background-color: COMPLETAR;
-  color: COMPLETAR;
-  border: COMPLETAR;
-  border-radius: COMPLETAR;
-  cursor: COMPLETAR;
-}
-
-.addFood button:hover {
-  background-color: COMPLETAR;
 }
