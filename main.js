@@ -18,9 +18,7 @@ let comidas = [];
 const container = document.getElementById('comidaContainer');
 
 function mostrarComidas() {
-  for (let i = 0; i < comidas.length; i++) {
-    const comida = comidas[i];
-
+  comidas.forEach(comida => {
     const tarjeta = document.createElement('article');
 
     tarjeta.innerHTML = `
@@ -31,5 +29,5 @@ function mostrarComidas() {
     `;
 
     container.appendChild(tarjeta);
-  }
+  });
 }
