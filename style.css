@@ -17,8 +17,8 @@
   width: 260px;
 }
 .addFood form {
-  display: COMPLETAR;
-  flex-direction: COMPLETAR;
-  gap: COMPLETAR;
-  max-width: COMPLETAR;
+  display:flex;
+  flex-direction:column;
+  gap: 12 px;
+  max-width: 400 px;
 }
