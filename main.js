@@ -31,3 +31,9 @@ function mostrarComidas() {
     container.appendChild(tarjeta);
   });
 }
+const formulario = document.getElementById('COMPLETAR');
+
+formulario.addEventListener('COMPLETAR', function (evento) {
+  evento.preventDefault();
+  alert('COMPLETAR');
+});
