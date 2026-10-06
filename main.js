@@ -35,5 +35,19 @@ const formulario = document.getElementById('formAgregar');
 
 formulario.addEventListener('submit', function (evento) {
   evento.preventDefault();
+
+  const nuevaComida = {
+    nombre: document.getElementById('nombre').value,
+    categoria: document.getElementById('categoria').value,
+    provincia: document.getElementById('provincia').value,
+    ingredientes: []
+  };
+
+  comidas.push(nuevaComida);
+
+  container.innerHTML = '';
+  mostrarComidas();
+
   alert('Comida recibida');
+  formulario.reset();
 });
