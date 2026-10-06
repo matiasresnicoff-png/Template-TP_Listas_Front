@@ -25,7 +25,7 @@ function mostrarComidas() {
       <h2>${comida.nombre}</h2>
       <p>Categoría: ${comida.categoria}</p>
       <p>Provincia: ${comida.provincia}</p>
-      <p>Ingredientes: ${comida.ingredientes}</p>
+      <p>Ingredientes: ${comida.ingredientes.join(', ')}</p>
     `;
 
     container.appendChild(tarjeta);
@@ -41,7 +41,7 @@ formulario.addEventListener('submit', function (evento) {
     nombre: document.getElementById('nombre').value,
     categoria: document.getElementById('categoria').value,
     provincia: document.getElementById('provincia').value,
-    ingredientes: []
+    ingredientes: document.getElementById('ingredientes').value.split(',').map(i => i.trim())
   };
 
   comidas.push(nuevaComida);
