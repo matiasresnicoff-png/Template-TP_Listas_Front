@@ -38,10 +38,10 @@ formulario.addEventListener('submit', function (evento) {
   evento.preventDefault();
 
   const nuevaComida = {
-    nombre: document.getElementById('nombre').value,
-    categoria: document.getElementById('categoria').value,
-    provincia: document.getElementById('provincia').value,
-    ingredientes: document.getElementById('ingredientes').value.split(',').map(i => i.trim())
+    nombre: evento.target.nombre.value,
+    categoria: evento.target.categoria.value,
+    provincia: evento.target.provincia.value,
+    ingredientes: evento.target.ingredientes.value.split(',').map(i => i.trim())
   };
 
   comidas.push(nuevaComida);
