@@ -4,27 +4,92 @@
   padding: 0px;
 }
 
+body {
+font-family: Arial, sans-serif;
+background-color: #fff8ee;
+color: #333;
+}
+
 .comida-container {
 display: flex;
 flex-wrap: wrap;
-gap: 16px;
-padding: 16px;
+gap: 20px;
+padding: 24px;
+justify-content: center;
 }
 
 .comida-container article {
-border: 1px solid #ccc;
-border-radius: 8px;
-padding: 16px;
-width: 260px;
+width: 280px;
+background-color: white;
+border-radius: 12px;
+border-top: 6px solid #e65100;
+padding: 18px;
+box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.comida-container article:hover {
+transform: translateY(-4px);
+box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
+}
+
+.comida-container article h2 {
+color: #e65100;
+font-size: 24px;
+margin-bottom: 10px;
+border-bottom: 2px solid #ffe0b2;
+padding-bottom: 6px;
+}
+
+.comida-container article p {
+margin-bottom: 4px;
+font-size: 15px;
+}
+
+.comida-container article p:last-child {
+margin-top: 8px;
+font-style: italic;
+color: #6d4c41;
 }
 
 .addFood {
-padding: 16px;
+padding: 24px;
+display: flex;
+justify-content: center;
 }
 
 .addFood form {
 display: flex;
 flex-direction: column;
 gap: 12px;
+width: 100%;
 max-width: 400px;
+background-color: white;
+padding: 20px;
+border-radius: 12px;
+box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.addFood label {
+font-weight: bold;
+color: #e65100;
+}
+
+.addFood input {
+padding: 8px;
+border: 1px solid #ccc;
+border-radius: 6px;
+}
+
+.addFood button {
+padding: 10px;
+background-color: #e65100;
+color: white;
+border: none;
+border-radius: 6px;
+font-weight: bold;
+cursor: pointer;
+}
+
+.addFood button:hover {
+background-color: #bf360c;
 }
