@@ -31,6 +31,7 @@ function mostrarComidas() {
     container.appendChild(tarjeta);
   });
 }
+
 const formulario = document.getElementById('formAgregar');
 
 formulario.addEventListener('submit', function (evento) {

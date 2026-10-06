@@ -1,24 +1,30 @@
 *{
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0px;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0px;
 }
+
 .comida-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-  padding: 16px;
+display: flex;
+flex-wrap: wrap;
+gap: 16px;
+padding: 16px;
 }
 
 .comida-container article {
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 16px;
-  width: 260px;
+border: 1px solid #ccc;
+border-radius: 8px;
+padding: 16px;
+width: 260px;
 }
+
+.addFood {
+padding: 16px;
+}
+
 .addFood form {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  max-width: 400px;
+display: flex;
+flex-direction: column;
+gap: 12px;
+max-width: 400px;
 }
