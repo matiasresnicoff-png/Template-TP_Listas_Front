@@ -8,13 +8,12 @@
 </head>
 <body>
     <header>
+      <!-- Para filtros y navegacion -->
       <div class="filtros">
-        <!-- Buscador Triple (Nombre, Categoría o Provincia) -->
         <label for="buscador">Buscar:</label>
         <input type="text" id="buscador" placeholder="Ej: Asado, Parrilla o Salta">
         <button id="btnBuscar" type="button">Buscar</button>
 
-        <!-- Filtros desplegables existentes -->
         <label for="filtroCategoria">Categoría:</label>
         <select id="filtroCategoria">
           <option value="">Todas las categorías</option>
@@ -32,22 +31,23 @@
     </header>
 
     <main class="comida-container" id="comidaContainer">
+        <!-- Contenido Dinamico -->
     </main>     
 
     <section class="addFood">
       <form id="formAgregar">
 
         <label for="nombre">Nombre de la comida</label>
-        <input type="text" id="nombre" name="nombre" placeholder="Ej: Asado" required>
+        <input type="text" id="nombre" name="nombre" placeholder="Ej: Asado">
 
         <label for="categoria">Tipo de comida</label>
-        <input type="text" id="categoria" name="categoria" placeholder="Ej: Parrilla" required>
+        <input type="text" id="categoria" name="categoria" placeholder="Ej: Parrilla">
 
         <label for="provincia">Provincia</label>
-        <input type="text" id="provincia" name="provincia" placeholder="Ej: Tucumán" required>
+        <input type="text" id="provincia" name="provincia" placeholder="Ej: Buenos Aires">
 
         <label for="ingredientes">Ingredientes</label>
-        <input type="text" id="ingredientes" name="ingredientes" placeholder="Ej: Carne, Sal, Chimichurri" required>
+        <input type="text" id="ingredientes" name="ingredientes" placeholder="Ej: Carne, Sal, Chimichurri">
 
         <button type="submit">Agregar comida</button>
 
