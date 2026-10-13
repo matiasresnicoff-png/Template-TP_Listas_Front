@@ -2,8 +2,13 @@ let comidas = [];
 
 const container = document.getElementById('comidaContainer');
 const formulario = document.getElementById('formAgregar');
-const filtroNombre = document.getElementById('filtroNombre');
+
+const filtroCategoria = document.getElementById('filtroCategoria');
 const filtroProvincia = document.getElementById('filtroProvincia');
+
+const btnFiltroCategoria = document.getElementById('btnFiltroCategoria');
+const btnFiltroProvincia = document.getElementById('btnFiltroProvincia');
+const btnMostrarTodos = document.getElementById('btnMostrarTodos');
 
 fetch('./data/comidas.json')
   .then(response => response.json())
@@ -43,24 +48,26 @@ formulario.addEventListener('submit', function (evento) {
 
   comidas.push(nuevaComida);
 
-  aplicarFiltros();
+  mostrarComidas(comidas);
 
   alert('Comida recibida');
   formulario.reset();
 });
 
-filtroNombre.addEventListener('input', aplicarFiltros);
-filtroProvincia.addEventListener('input', aplicarFiltros);
-
-function aplicarFiltros() {
-  const textoNombre = filtroNombre.value.toLowerCase().trim();
-  const textoProvincia = filtroProvincia.value.toLowerCase().trim();
-
-  const filtradas = comidas.filter(comida => {
-    const coincideNombre = comida.nombre.toLowerCase().includes(textoNombre);
-    const coincideProvincia = comida.provincia.toLowerCase().includes(textoProvincia);
-    return coincideNombre && coincideProvincia;
-  });
-
+btnFiltroCategoria.addEventListener('click', () => {
+  const texto = filtroCategoria.value.toLowerCase().trim();
+  const filtradas = comidas.filter(comida => comida.categoria.toLowerCase().includes(texto));
   mostrarComidas(filtradas);
-}
+});
+
+btnFiltroProvincia.addEventListener('click', () => {
+  const texto = filtroProvincia.value.toLowerCase().trim();
+  const filtradas = comidas.filter(comida => comida.provincia.toLowerCase().includes(texto));
+  mostrarComidas(filtradas);
+});
+
+btnMostrarTodos.addEventListener('click', () => {
+  filtroCategoria.value = '';
+  filtroProvincia.value = '';
+  mostrarComidas(comidas);
+});
