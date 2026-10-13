@@ -1,26 +1,24 @@
 let comidas = [];
+
 const container = document.getElementById('comidaContainer');
+const formulario = document.getElementById('formAgregar');
 const filtroProvincia = document.getElementById('filtroProvincia');
 
-function cargarComidas(url) {
-  fetch(url)
-    .then(response => {
-      if (!response.ok) throw new Error('Error en la respuesta HTTP');
-      return response.json();
+function cargarComidas(ruta) {
+  fetch(ruta)
+    .then(function (respuesta) {
+      return respuesta.json();
     })
-    .then(data => {
-      comidas = data;
+    .then(function (datos) {
+      comidas = datos;
       mostrarComidas(comidas);
-    })
-    .catch(error => {
-      console.error('Error al leer el archivo JSON:', error);
     });
 }
 
 function mostrarComidas(lista) {
   container.innerHTML = '';
 
-  lista.forEach(comida => {
+  lista.forEach(function (comida) {
     const tarjeta = document.createElement('article');
 
     tarjeta.innerHTML = `
@@ -36,8 +34,6 @@ function mostrarComidas(lista) {
 
 cargarComidas('./data/comidas.json');
 
-const formulario = document.getElementById('formAgregar');
-
 formulario.addEventListener('submit', function (evento) {
   evento.preventDefault();
 
@@ -45,28 +41,30 @@ formulario.addEventListener('submit', function (evento) {
     nombre: evento.target.nombre.value,
     categoria: evento.target.categoria.value,
     provincia: evento.target.provincia.value,
-    ingredientes: evento.target.ingredientes.value.split(',').map(i => i.trim())
+    ingredientes: evento.target.ingredientes.value.split(',')
   };
 
   comidas.push(nuevaComida);
-  
-  filtrarYMostrar();
 
-  alert('Comida recibida');
+  filtrarComidas();
+
+  alert('Comida agregada');
   formulario.reset();
 });
 
 filtroProvincia.addEventListener('change', function () {
-  filtrarYMostrar();
+  filtrarComidas();
 });
 
-function filtrarYMostrar() {
+function filtrarComidas() {
   const provinciaSeleccionada = filtroProvincia.value;
 
-  if (provinciaSeleccionada === '' || provinciaSeleccionada === null) {
+  if (provinciaSeleccionada === '') {
     mostrarComidas(comidas);
   } else {
-    const comidasFiltradas = comidas.filter(comida => comida.provincia === provinciaSeleccionada);
-    mostrarComidas(comidasFiltradas);
+    const filtradas = comidas.filter(function (comida) {
+      return comida.provincia === provinciaSeleccionada;
+    });
+    mostrarComidas(filtradas);
   }
 }

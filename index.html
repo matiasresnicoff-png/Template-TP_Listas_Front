@@ -1,47 +1,37 @@
 <form id="formAgregar">
-  <div>
-    <label for="nombre">Nombre:</label>
-    <input type="text" id="nombre" name="nombre" required>
-  </div>
+  <label for="nombre">Nombre:</label>
+  <input type="text" id="nombre" name="nombre">
 
-  <div>
-    <label for="categoria">Categoría:</label>
-    <select id="categoria" name="categoria" required>
-      <option value="">Selecciona una categoría</option>
-      <option value="Entrada">Entrada</option>
-      <option value="Plato Principal">Plato Principal</option>
-      <option value="Postre">Postre</option>
-    </select>
-  </div>
+  <label for="categoria">Categoría:</label>
+  <select id="categoria" name="categoria">
+    <option value="">Todas</option>
+    <option value="Entrada">Entrada</option>
+    <option value="Plato Principal">Plato Principal</option>
+    <option value="Postre">Postre</option>
+  </select>
 
-  <div>
-    <label for="provincia">Provincia:</label>
-    <select id="provincia" name="provincia" required>
-      <option value="">Selecciona una provincia</option>
-      <option value="Buenos Aires">Buenos Aires</option>
-      <option value="Mendoza">Mendoza</option>
-      <option value="Córdoba">Córdoba</option>
-      <option value="Salta">Salta</option>
-    </select>
-  </div>
-
-  <div>
-    <label for="ingredientes">Ingredientes (separados por coma):</label>
-    <input type="text" id="ingredientes" name="ingredientes" required>
-  </div>
-
-  <button type="submit">Agregar Comida</button>
-</form>
-
-<div>
-  <label for="filtroProvincia">Filtrar por provincia:</label>
-  <select id="filtroProvincia">
-    <option value="">Todas las provincias</option>
+  <label for="provincia">Provincia:</label>
+  <select id="provincia" name="provincia">
+    <option value="">Todas</option>
     <option value="Buenos Aires">Buenos Aires</option>
     <option value="Mendoza">Mendoza</option>
     <option value="Córdoba">Córdoba</option>
     <option value="Salta">Salta</option>
   </select>
-</div>
+
+  <label for="ingredientes">Ingredientes:</label>
+  <input type="text" id="ingredientes" name="ingredientes">
+
+  <button type="submit">Agregar</button>
+</form>
+
+<label for="filtroProvincia">Filtrar por provincia:</label>
+<select id="filtroProvincia">
+  <option value="">Todas</option>
+  <option value="Buenos Aires">Buenos Aires</option>
+  <option value="Mendoza">Mendoza</option>
+  <option value="Córdoba">Córdoba</option>
+  <option value="Salta">Salta</option>
+</select>
 
 <div id="comidaContainer"></div>
