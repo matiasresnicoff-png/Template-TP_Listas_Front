@@ -1,5 +1,6 @@
 let comidas = [];
 const container = document.getElementById('comidaContainer');
+const filtroProvincia = document.getElementById('filtroProvincia');
 
 function cargarComidas(url) {
   fetch(url)
@@ -48,8 +49,24 @@ formulario.addEventListener('submit', function (evento) {
   };
 
   comidas.push(nuevaComida);
-  mostrarComidas(comidas);
+  
+  filtrarYMostrar();
 
   alert('Comida recibida');
   formulario.reset();
 });
+
+filtroProvincia.addEventListener('change', function () {
+  filtrarYMostrar();
+});
+
+function filtrarYMostrar() {
+  const provinciaSeleccionada = filtroProvincia.value;
+
+  if (provinciaSeleccionada === '' || provinciaSeleccionada === null) {
+    mostrarComidas(comidas);
+  } else {
+    const comidasFiltradas = comidas.filter(comida => comida.provincia === provinciaSeleccionada);
+    mostrarComidas(comidasFiltradas);
+  }
+}
