@@ -5,7 +5,9 @@ const formulario = document.getElementById('formAgregar');
 
 const filtroCategoria = document.getElementById('filtroCategoria');
 const filtroProvincia = document.getElementById('filtroProvincia');
+const buscador = document.getElementById('buscador');
 
+const btnBuscar = document.getElementById('btnBuscar');
 const btnFiltroCategoria = document.getElementById('btnFiltroCategoria');
 const btnFiltroProvincia = document.getElementById('btnFiltroProvincia');
 const btnMostrarTodos = document.getElementById('btnMostrarTodos');
@@ -15,6 +17,7 @@ fetch('./data/comidas.json')
   .then(data => {
     comidas = data;
     mostrarComidas(comidas);
+    cargarFiltrosOpciones();
   })
   .catch(error => {
     console.error('Error al leer el archivo JSON:', error);
@@ -36,6 +39,37 @@ function mostrarComidas(lista = comidas) {
   });
 }
 
+function cargarFiltrosOpciones() {
+  filtroCategoria.innerHTML = '<option value="">Todas las categorías</option>';
+  filtroProvincia.innerHTML = '<option value="">Todas las provincias</option>';
+
+  const categorias = [];
+  const provincias = [];
+
+  comidas.forEach(comida => {
+    if (!categorias.includes(comida.categoria)) {
+      categorias.push(comida.categoria);
+    }
+    if (!provincias.includes(comida.provincia)) {
+      provincias.push(comida.provincia);
+    }
+  });
+
+  categorias.forEach(cat => {
+    const option = document.createElement('option');
+    option.value = cat;
+    option.textContent = cat;
+    filtroCategoria.appendChild(option);
+  });
+
+  provincias.forEach(prov => {
+    const option = document.createElement('option');
+    option.value = prov;
+    option.textContent = prov;
+    filtroProvincia.appendChild(option);
+  });
+}
+
 formulario.addEventListener('submit', function (evento) {
   evento.preventDefault();
 
@@ -49,24 +83,50 @@ formulario.addEventListener('submit', function (evento) {
   comidas.push(nuevaComida);
 
   mostrarComidas(comidas);
+  cargarFiltrosOpciones();
 
   alert('Comida recibida');
   formulario.reset();
 });
 
+// Buscador triple con OR (||)
+btnBuscar.addEventListener('click', () => {
+  const texto = buscador.value.toLowerCase().trim();
+
+  if (texto === '') {
+    mostrarComidas(comidas);
+  } else {
+    const filtradas = comidas.filter(comida => 
+      comida.nombre.toLowerCase().includes(texto) ||
+      comida.categoria.toLowerCase().includes(texto) ||
+      comida.provincia.toLowerCase().includes(texto)
+    );
+    mostrarComidas(filtradas);
+  }
+});
+
 btnFiltroCategoria.addEventListener('click', () => {
-  const texto = filtroCategoria.value.toLowerCase().trim();
-  const filtradas = comidas.filter(comida => comida.categoria.toLowerCase().includes(texto));
-  mostrarComidas(filtradas);
+  const seleccion = filtroCategoria.value;
+  if (seleccion === '') {
+    mostrarComidas(comidas);
+  } else {
+    const filtradas = comidas.filter(comida => comida.categoria === seleccion);
+    mostrarComidas(filtradas);
+  }
 });
 
 btnFiltroProvincia.addEventListener('click', () => {
-  const texto = filtroProvincia.value.toLowerCase().trim();
-  const filtradas = comidas.filter(comida => comida.provincia.toLowerCase().includes(texto));
-  mostrarComidas(filtradas);
+  const seleccion = filtroProvincia.value;
+  if (seleccion === '') {
+    mostrarComidas(comidas);
+  } else {
+    const filtradas = comidas.filter(comida => comida.provincia === seleccion);
+    mostrarComidas(filtradas);
+  }
 });
 
 btnMostrarTodos.addEventListener('click', () => {
+  buscador.value = '';
   filtroCategoria.value = '';
   filtroProvincia.value = '';
   mostrarComidas(comidas);

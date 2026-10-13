@@ -9,12 +9,22 @@
 <body>
     <header>
       <div class="filtros">
+        <!-- Buscador Triple (Nombre, Categoría o Provincia) -->
+        <label for="buscador">Buscar:</label>
+        <input type="text" id="buscador" placeholder="Ej: Asado, Parrilla o Salta">
+        <button id="btnBuscar" type="button">Buscar</button>
+
+        <!-- Filtros desplegables existentes -->
         <label for="filtroCategoria">Categoría:</label>
-        <input type="text" id="filtroCategoria" placeholder="Ej: Parrilla">
+        <select id="filtroCategoria">
+          <option value="">Todas las categorías</option>
+        </select>
         <button id="btnFiltroCategoria" type="button">Filtrar por categoría</button>
 
         <label for="filtroProvincia">Provincia:</label>
-        <input type="text" id="filtroProvincia" placeholder="Ej: Mendoza">
+        <select id="filtroProvincia">
+          <option value="">Todas las provincias</option>
+        </select>
         <button id="btnFiltroProvincia" type="button">Filtrar por provincia</button>
 
         <button id="btnMostrarTodos" type="button">Mostrar todos</button>
