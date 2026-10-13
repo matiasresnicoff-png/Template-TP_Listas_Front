@@ -2,6 +2,7 @@ let comidas = [];
 
 const container = document.getElementById('comidaContainer');
 const formulario = document.getElementById('formAgregar');
+const filtroNombre = document.getElementById('filtroNombre');
 const filtroProvincia = document.getElementById('filtroProvincia');
 
 fetch('./data/comidas.json')
@@ -42,23 +43,24 @@ formulario.addEventListener('submit', function (evento) {
 
   comidas.push(nuevaComida);
 
-  filtrarComidas();
+  aplicarFiltros();
 
   alert('Comida recibida');
   formulario.reset();
 });
 
-filtroProvincia.addEventListener('change', () => {
-  filtrarComidas();
-});
+filtroNombre.addEventListener('input', aplicarFiltros);
+filtroProvincia.addEventListener('input', aplicarFiltros);
 
-function filtrarComidas() {
-  const seleccion = filtroProvincia.value;
+function aplicarFiltros() {
+  const textoNombre = filtroNombre.value.toLowerCase().trim();
+  const textoProvincia = filtroProvincia.value.toLowerCase().trim();
 
-  if (seleccion === '') {
-    mostrarComidas(comidas);
-  } else {
-    const filtradas = comidas.filter(comida => comida.provincia === seleccion);
-    mostrarComidas(filtradas);
-  }
+  const filtradas = comidas.filter(comida => {
+    const coincideNombre = comida.nombre.toLowerCase().includes(textoNombre);
+    const coincideProvincia = comida.provincia.toLowerCase().includes(textoProvincia);
+    return coincideNombre && coincideProvincia;
+  });
+
+  mostrarComidas(filtradas);
 }

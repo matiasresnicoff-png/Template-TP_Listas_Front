@@ -8,14 +8,13 @@
 </head>
 <body>
     <header>
-      <label for="filtroProvincia">Filtrar por provincia:</label>
-      <select id="filtroProvincia">
-        <option value="">Todas</option>
-        <option value="Buenos Aires">Buenos Aires</option>
-        <option value="Mendoza">Mendoza</option>
-        <option value="Córdoba">Córdoba</option>
-        <option value="Salta">Salta</option>
-      </select>
+      <div class="filtros">
+        <label for="filtroNombre">Buscar por nombre:</label>
+        <input type="text" id="filtroNombre" placeholder="Ej: Empanada">
+
+        <label for="filtroProvincia">Buscar por provincia:</label>
+        <input type="text" id="filtroProvincia" placeholder="Ej: Salta">
+      </div>
     </header>
 
     <main class="comida-container" id="comidaContainer">
@@ -25,27 +24,16 @@
       <form id="formAgregar">
 
         <label for="nombre">Nombre de la comida</label>
-        <input type="text" id="nombre" name="nombre" placeholder="Ej: Asado">
+        <input type="text" id="nombre" name="nombre" placeholder="Ej: Asado" required>
 
         <label for="categoria">Tipo de comida</label>
-        <select id="categoria" name="categoria">
-          <option value="">Selecciona categoría</option>
-          <option value="Parrilla">Parrilla</option>
-          <option value="Minuta">Minuta</option>
-          <option value="Postre">Postre</option>
-        </select>
+        <input type="text" id="categoria" name="categoria" placeholder="Ej: Parrilla" required>
 
         <label for="provincia">Provincia</label>
-        <select id="provincia" name="provincia">
-          <option value="">Selecciona provincia</option>
-          <option value="Buenos Aires">Buenos Aires</option>
-          <option value="Mendoza">Mendoza</option>
-          <option value="Córdoba">Córdoba</option>
-          <option value="Salta">Salta</option>
-        </select>
+        <input type="text" id="provincia" name="provincia" placeholder="Ej: Tucumán" required>
 
         <label for="ingredientes">Ingredientes</label>
-        <input type="text" id="ingredientes" name="ingredientes" placeholder="Ej: Carne, Sal, Chimichurri">
+        <input type="text" id="ingredientes" name="ingredientes" placeholder="Ej: Carne, Sal, Chimichurri" required>
 
         <button type="submit">Agregar comida</button>
 
