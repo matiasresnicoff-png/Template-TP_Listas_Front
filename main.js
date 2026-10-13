@@ -4,21 +4,19 @@ const container = document.getElementById('comidaContainer');
 const formulario = document.getElementById('formAgregar');
 const filtroProvincia = document.getElementById('filtroProvincia');
 
-function cargarComidas(ruta) {
-  fetch(ruta)
-    .then(function (respuesta) {
-      return respuesta.json();
-    })
-    .then(function (datos) {
-      comidas = datos;
-      mostrarComidas(comidas);
-    });
-}
+fetch('./data/comidas.json')
+  .then(response => response.json())
+  .then(data => {
+    comidas = data;
+    mostrarComidas(comidas);
+  })
+  .catch(error => {
+    console.error('Error al leer el archivo JSON:', error);
+  });
 
-function mostrarComidas(lista) {
+function mostrarComidas(lista = comidas) {
   container.innerHTML = '';
-
-  lista.forEach(function (comida) {
+  lista.forEach(comida => {
     const tarjeta = document.createElement('article');
 
     tarjeta.innerHTML = `
@@ -32,8 +30,6 @@ function mostrarComidas(lista) {
   });
 }
 
-cargarComidas('./data/comidas.json');
-
 formulario.addEventListener('submit', function (evento) {
   evento.preventDefault();
 
@@ -41,30 +37,28 @@ formulario.addEventListener('submit', function (evento) {
     nombre: evento.target.nombre.value,
     categoria: evento.target.categoria.value,
     provincia: evento.target.provincia.value,
-    ingredientes: evento.target.ingredientes.value.split(',')
+    ingredientes: evento.target.ingredientes.value.split(',').map(i => i.trim())
   };
 
   comidas.push(nuevaComida);
 
   filtrarComidas();
 
-  alert('Comida agregada');
+  alert('Comida recibida');
   formulario.reset();
 });
 
-filtroProvincia.addEventListener('change', function () {
+filtroProvincia.addEventListener('change', () => {
   filtrarComidas();
 });
 
 function filtrarComidas() {
-  const provinciaSeleccionada = filtroProvincia.value;
+  const seleccion = filtroProvincia.value;
 
-  if (provinciaSeleccionada === '') {
+  if (seleccion === '') {
     mostrarComidas(comidas);
   } else {
-    const filtradas = comidas.filter(function (comida) {
-      return comida.provincia === provinciaSeleccionada;
-    });
+    const filtradas = comidas.filter(comida => comida.provincia === seleccion);
     mostrarComidas(filtradas);
   }
 }

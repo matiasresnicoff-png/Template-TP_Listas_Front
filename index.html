@@ -1,37 +1,57 @@
-<form id="formAgregar">
-  <label for="nombre">Nombre:</label>
-  <input type="text" id="nombre" name="nombre">
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comidas Argentinas</title> 
+    <link rel="stylesheet" href="style.css"> 
+</head>
+<body>
+    <header>
+      <label for="filtroProvincia">Filtrar por provincia:</label>
+      <select id="filtroProvincia">
+        <option value="">Todas</option>
+        <option value="Buenos Aires">Buenos Aires</option>
+        <option value="Mendoza">Mendoza</option>
+        <option value="Córdoba">Córdoba</option>
+        <option value="Salta">Salta</option>
+      </select>
+    </header>
 
-  <label for="categoria">Categoría:</label>
-  <select id="categoria" name="categoria">
-    <option value="">Todas</option>
-    <option value="Entrada">Entrada</option>
-    <option value="Plato Principal">Plato Principal</option>
-    <option value="Postre">Postre</option>
-  </select>
+    <main class="comida-container" id="comidaContainer">
+    </main>     
 
-  <label for="provincia">Provincia:</label>
-  <select id="provincia" name="provincia">
-    <option value="">Todas</option>
-    <option value="Buenos Aires">Buenos Aires</option>
-    <option value="Mendoza">Mendoza</option>
-    <option value="Córdoba">Córdoba</option>
-    <option value="Salta">Salta</option>
-  </select>
+    <section class="addFood">
+      <form id="formAgregar">
 
-  <label for="ingredientes">Ingredientes:</label>
-  <input type="text" id="ingredientes" name="ingredientes">
+        <label for="nombre">Nombre de la comida</label>
+        <input type="text" id="nombre" name="nombre" placeholder="Ej: Asado">
 
-  <button type="submit">Agregar</button>
-</form>
+        <label for="categoria">Tipo de comida</label>
+        <select id="categoria" name="categoria">
+          <option value="">Selecciona categoría</option>
+          <option value="Parrilla">Parrilla</option>
+          <option value="Minuta">Minuta</option>
+          <option value="Postre">Postre</option>
+        </select>
 
-<label for="filtroProvincia">Filtrar por provincia:</label>
-<select id="filtroProvincia">
-  <option value="">Todas</option>
-  <option value="Buenos Aires">Buenos Aires</option>
-  <option value="Mendoza">Mendoza</option>
-  <option value="Córdoba">Córdoba</option>
-  <option value="Salta">Salta</option>
-</select>
+        <label for="provincia">Provincia</label>
+        <select id="provincia" name="provincia">
+          <option value="">Selecciona provincia</option>
+          <option value="Buenos Aires">Buenos Aires</option>
+          <option value="Mendoza">Mendoza</option>
+          <option value="Córdoba">Córdoba</option>
+          <option value="Salta">Salta</option>
+        </select>
 
-<div id="comidaContainer"></div>
+        <label for="ingredientes">Ingredientes</label>
+        <input type="text" id="ingredientes" name="ingredientes" placeholder="Ej: Carne, Sal, Chimichurri">
+
+        <button type="submit">Agregar comida</button>
+
+      </form>
+    </section>
+
+    <script type="module" src="./main.js"></script>
+</body>
+</html>
