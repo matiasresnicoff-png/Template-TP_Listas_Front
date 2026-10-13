@@ -1,24 +1,25 @@
-/*
-    Cargar comidas en memoria desde el JSON
-*/
-fetch('./data/comidas.json')          // Ruta al archivo JSON
-  .then(response => response.json())  // Convertir la respuesta en JSON
-  .then(data => {                     // Aquí tienes acceso al JSON en formato de objeto JS
-    console.log('Comidas cargadas desde JSON:');
-    console.log(data);    
-    comidas = data;                   // Asignar el JSON a la variable comidas
-    mostrarComidas();
-  })
-  .catch(error => {                   // Manejo de errores al leer el archivo JSON
-    console.error('Error al leer el archivo JSON:', error);
-  });
-
 let comidas = [];
-
 const container = document.getElementById('comidaContainer');
 
-function mostrarComidas() {
-  comidas.forEach(comida => {
+function cargarComidas(url) {
+  fetch(url)
+    .then(response => {
+      if (!response.ok) throw new Error('Error en la respuesta HTTP');
+      return response.json();
+    })
+    .then(data => {
+      comidas = data;
+      mostrarComidas(comidas);
+    })
+    .catch(error => {
+      console.error('Error al leer el archivo JSON:', error);
+    });
+}
+
+function mostrarComidas(lista) {
+  container.innerHTML = '';
+
+  lista.forEach(comida => {
     const tarjeta = document.createElement('article');
 
     tarjeta.innerHTML = `
@@ -31,6 +32,8 @@ function mostrarComidas() {
     container.appendChild(tarjeta);
   });
 }
+
+cargarComidas('./data/comidas.json');
 
 const formulario = document.getElementById('formAgregar');
 
@@ -45,9 +48,7 @@ formulario.addEventListener('submit', function (evento) {
   };
 
   comidas.push(nuevaComida);
-
-  container.innerHTML = '';
-  mostrarComidas();
+  mostrarComidas(comidas);
 
   alert('Comida recibida');
   formulario.reset();
