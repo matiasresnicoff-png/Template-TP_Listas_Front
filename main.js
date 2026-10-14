@@ -2,15 +2,17 @@
     Cargar comidas en memoria desde el JSON
 */
 fetch('./data/comidas.json')          // Ruta al archivo JSON
-  .then(response => response.json())  // Convertir la respuesta en JSON
-  .then(data => {                     // Aquí tienes acceso al JSON en formato de objeto JS
+  .then(function (response) {         // Convertir la respuesta en JSON
+    return response.json();
+  })
+  .then(function (data) {             // Aquí tienes acceso al JSON en formato de objeto JS
     console.log('Comidas cargadas desde JSON:');
     console.log(data);    
     comidas = data;                   // Asignar el JSON a la variable comidas
     mostrarComidas();
     cargarFiltrosOpciones();
   })
-  .catch(error => {                   // Manejo de errores al leer el archivo JSON
+  .catch(function (error) {           // Manejo de errores al leer el archivo JSON
     console.error('Error al leer el archivo JSON:', error);
   });
 
@@ -28,9 +30,14 @@ const btnFiltroCategoria = document.getElementById('btnFiltroCategoria');
 const btnFiltroProvincia = document.getElementById('btnFiltroProvincia');
 const btnMostrarTodos = document.getElementById('btnMostrarTodos');
 
-function mostrarComidas(lista = comidas) {
+function mostrarComidas(lista) {
+  if (!lista) {
+    lista = comidas;
+  }
+
   container.innerHTML = '';
-  lista.forEach(comida => {
+
+  lista.forEach(function (comida) {
     const tarjeta = document.createElement('article');
 
     tarjeta.innerHTML = `
@@ -51,7 +58,7 @@ function cargarFiltrosOpciones() {
   const categorias = [];
   const provincias = [];
 
-  comidas.forEach(comida => {
+  comidas.forEach(function (comida) {
     if (!categorias.includes(comida.categoria)) {
       categorias.push(comida.categoria);
     }
@@ -60,14 +67,14 @@ function cargarFiltrosOpciones() {
     }
   });
 
-  categorias.forEach(cat => {
+  categorias.forEach(function (cat) {
     const option = document.createElement('option');
     option.value = cat;
     option.textContent = cat;
     filtroCategoria.appendChild(option);
   });
 
-  provincias.forEach(prov => {
+  provincias.forEach(function (prov) {
     const option = document.createElement('option');
     option.value = prov;
     option.textContent = prov;
@@ -78,11 +85,15 @@ function cargarFiltrosOpciones() {
 formulario.addEventListener('submit', function (evento) {
   evento.preventDefault();
 
+  const listaIngredientes = evento.target.ingredientes.value.split(',').map(function (i) {
+    return i.trim();
+  });
+
   const nuevaComida = {
     nombre: evento.target.nombre.value,
     categoria: evento.target.categoria.value,
     provincia: evento.target.provincia.value,
-    ingredientes: evento.target.ingredientes.value.split(',').map(i => i.trim())
+    ingredientes: listaIngredientes
   };
 
   comidas.push(nuevaComida);
@@ -96,42 +107,46 @@ formulario.addEventListener('submit', function (evento) {
 });
 
 // Buscador triple con OR (||)
-btnBuscar.addEventListener('click', () => {
+btnBuscar.addEventListener('click', function () {
   const texto = buscador.value.toLowerCase().trim();
 
   if (texto === '') {
     mostrarComidas(comidas);
   } else {
-    const filtradas = comidas.filter(comida => 
-      comida.nombre.toLowerCase().includes(texto) ||
-      comida.categoria.toLowerCase().includes(texto) ||
-      comida.provincia.toLowerCase().includes(texto)
-    );
+    const filtradas = comidas.filter(function (comida) {
+      return comida.nombre.toLowerCase().includes(texto) ||
+             comida.categoria.toLowerCase().includes(texto) ||
+             comida.provincia.toLowerCase().includes(texto);
+    });
     mostrarComidas(filtradas);
   }
 });
 
-btnFiltroCategoria.addEventListener('click', () => {
+btnFiltroCategoria.addEventListener('click', function () {
   const seleccion = filtroCategoria.value;
   if (seleccion === '') {
     mostrarComidas(comidas);
   } else {
-    const filtradas = comidas.filter(comida => comida.categoria === seleccion);
+    const filtradas = comidas.filter(function (comida) {
+      return comida.categoria === seleccion;
+    });
     mostrarComidas(filtradas);
   }
 });
 
-btnFiltroProvincia.addEventListener('click', () => {
+btnFiltroProvincia.addEventListener('click', function () {
   const seleccion = filtroProvincia.value;
   if (seleccion === '') {
     mostrarComidas(comidas);
   } else {
-    const filtradas = comidas.filter(comida => comida.provincia === seleccion);
+    const filtradas = comidas.filter(function (comida) {
+      return comida.provincia === seleccion;
+    });
     mostrarComidas(filtradas);
   }
 });
 
-btnMostrarTodos.addEventListener('click', () => {
+btnMostrarTodos.addEventListener('click', function () {
   buscador.value = '';
   filtroCategoria.value = '';
   filtroProvincia.value = '';
