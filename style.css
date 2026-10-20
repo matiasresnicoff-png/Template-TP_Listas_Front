@@ -1,16 +1,94 @@
-/* Lista de inputs de ingredientes en 2 columnas con Flexbox */
-.grid-ingredientes {
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+}
+
+/* Header y Filtros */
+header {
+  background-color: #ffffff;
+  padding: 16px;
+  border-bottom: 2px solid #ddd;
+  margin-bottom: 20px;
+}
+
+.filtros {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  align-items: center;
+  gap: 12px;
+  max-width: 1100px;
+  margin: 0 auto;
 }
 
-.grid-ingredientes input {
-  /* Ocupa casi la mitad del espacio menos el espacio del gap */
-  width: calc(50% - 4px); 
+.filtros div {
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
-/* Chips / etiquetitas de ingredientes usando Flexbox */
+.filtros label {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+input[type="text"],
+select {
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+button {
+  padding: 6px 12px;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  background-color: #e0e0e0;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+button:hover {
+  background-color: #d0d0d0;
+}
+
+/* Tarjetas */
+.comida-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 0 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.comida-container article {
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 16px;
+  width: 260px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.comida-container article h2 {
+  color: #e65100;
+  margin-bottom: 8px;
+}
+
+.comida-container article p {
+  margin-bottom: 6px;
+  font-size: 14px;
+}
+
+/* Chips / Etiquetas */
 .lista-chips {
   display: flex;
   flex-wrap: wrap;
@@ -21,24 +99,54 @@
 .chip {
   background-color: #e0e0e0;
   color: #333;
-  padding: 4px 10px;
-  border-radius: 6px;
+  padding: 4px 8px;
+  border-radius: 4px;
   font-size: 12px;
-  font-weight: 500;
 }
 
-/* Botón secundario para agregar box de ingrediente */
-#btnAgregarIngrediente {
-  background-color: #d1c7bd;
-  color: #333;
+/* Formulario */
+.addFood {
+  background-color: #ffffff;
+  padding: 20px;
+  margin: 30px auto;
+  max-width: 450px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.addFood h2 {
+  margin-bottom: 12px;
+}
+
+.addFood form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.addFood label {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.grid-ingredientes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.grid-ingredientes input {
+  width: calc(50% - 4px);
+}
+
+.addFood button[type="submit"] {
+  background-color: #4caf50;
+  color: white;
   border: none;
-  padding: 8px;
-  border-radius: 6px;
-  font-weight: 600;
-  cursor: pointer;
-  margin-top: 4px;
+  padding: 10px;
+  font-weight: bold;
 }
 
-#btnAgregarIngrediente:hover {
-  background-color: #bcaea0;
+.addFood button[type="submit"]:hover {
+  background-color: #45a049;
 }

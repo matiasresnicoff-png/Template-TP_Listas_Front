@@ -1,4 +1,6 @@
-/*  Cargar comidas en memoria desde el JSON*/
+/*
+    Cargar comidas en memoria desde el JSON
+*/
 fetch('./data/comidas.json')          // Ruta al archivo JSON
   .then(function (response) {         // Convertir la respuesta en JSON
     return response.json();
@@ -40,7 +42,6 @@ function mostrarComidas(lista) {
   lista.forEach(function (comida) {
     const tarjeta = document.createElement('article');
 
-    // Generar las etiquetitas de ingredientes
     let HTMLIngredientes = '<div class="lista-chips">';
     comida.ingredientes.forEach(function (ing) {
       HTMLIngredientes += '<span class="chip">' + ing + '</span>';
@@ -89,7 +90,6 @@ function cargarFiltrosOpciones() {
   });
 }
 
-// Botón para agregar un nuevo box de ingrediente
 btnAgregarIngrediente.addEventListener('click', function () {
   const nuevoInput = document.createElement('input');
   nuevoInput.type = 'text';
@@ -101,7 +101,6 @@ btnAgregarIngrediente.addEventListener('click', function () {
 formulario.addEventListener('submit', function (evento) {
   evento.preventDefault();
 
-  // Guardar todos los inputs de ingredientes que tengan texto
   const inputsIngredientes = document.querySelectorAll('.input-ingrediente');
   const listaIngredientes = [];
 
@@ -127,11 +126,9 @@ formulario.addEventListener('submit', function (evento) {
   alert('Comida recibida');
   formulario.reset();
 
-  // Resetear los campos de ingredientes dejando solo 1 box
   contenedorIngredientes.innerHTML = '<input type="text" class="input-ingrediente" placeholder="Un ingrediente por box">';
 });
 
-// Buscador general con OR (||)
 btnBuscar.addEventListener('click', function () {
   const texto = buscador.value.toLowerCase().trim();
 
