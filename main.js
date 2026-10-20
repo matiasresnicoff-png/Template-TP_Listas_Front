@@ -10,7 +10,7 @@ fetch('./data/comidas.json')          // Ruta al archivo JSON
     console.log(data);    
     comidas = data;                   // Asignar el JSON a la variable comidas
     mostrarComidas();
-    cargarFiltrosOpciones();
+    actualizarFiltros();              // Cargar las opciones en los desplegables
   })
   .catch(function (error) {           // Manejo de errores al leer el archivo JSON
     console.error('Error al leer el archivo JSON:', error);
@@ -59,34 +59,30 @@ function mostrarComidas(lista) {
   });
 }
 
-function cargarFiltrosOpciones() {
+function actualizarFiltros() {
   filtroCategoria.innerHTML = '<option value="">Todas las categorías</option>';
   filtroProvincia.innerHTML = '<option value="">Todas las provincias</option>';
 
-  const categorias = [];
-  const provincias = [];
-
   comidas.forEach(function (comida) {
-    if (!categorias.includes(comida.categoria)) {
-      categorias.push(comida.categoria);
+    if (comida.categoria) {
+      const existeCategoria = filtroCategoria.querySelector('option[value="' + comida.categoria + '"]');
+      if (!existeCategoria) {
+        const opcionCat = document.createElement('option');
+        opcionCat.value = comida.categoria;
+        opcionCat.textContent = comida.categoria;
+        filtroCategoria.appendChild(opcionCat);
+      }
     }
-    if (!provincias.includes(comida.provincia)) {
-      provincias.push(comida.provincia);
+
+    if (comida.provincia) {
+      const existeProvincia = filtroProvincia.querySelector('option[value="' + comida.provincia + '"]');
+      if (!existeProvincia) {
+        const opcionProv = document.createElement('option');
+        opcionProv.value = comida.provincia;
+        opcionProv.textContent = comida.provincia;
+        filtroProvincia.appendChild(opcionProv);
+      }
     }
-  });
-
-  categorias.forEach(function (cat) {
-    const option = document.createElement('option');
-    option.value = cat;
-    option.textContent = cat;
-    filtroCategoria.appendChild(option);
-  });
-
-  provincias.forEach(function (prov) {
-    const option = document.createElement('option');
-    option.value = prov;
-    option.textContent = prov;
-    filtroProvincia.appendChild(option);
   });
 }
 
@@ -119,9 +115,8 @@ formulario.addEventListener('submit', function (evento) {
 
   comidas.push(nuevaComida);
 
-  container.innerHTML = '';
   mostrarComidas();
-  cargarFiltrosOpciones();
+  actualizarFiltros();
 
   alert('Comida recibida');
   formulario.reset();

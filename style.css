@@ -1,4 +1,3 @@
-/* Reset básico con modelo de caja */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -8,13 +7,13 @@
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
-  background-color: #f5f5f7; /* Color de fondo oficial de Apple */
+  background-color: #f5f5f7;
   color: #1d1d1f;
   line-height: 1.47059;
   letter-spacing: -0.022em;
 }
 
-/* Header Translucido tipo Glassmorphism (Apple Bar) */
+/* Header Translucido Glassmorphism (Apple Bar) */
 header {
   position: sticky;
   top: 0;
@@ -48,7 +47,7 @@ header {
   color: #86868b;
 }
 
-/* Controls (Inputs & Selects) al estilo iOS / macOS */
+/* Inputs & Selects */
 input[type="text"],
 select {
   font-family: inherit;
@@ -64,18 +63,18 @@ select {
 
 input[type="text"]:focus,
 select:focus {
-  border-color: #0071e3; /* Azul primario Apple */
+  border-color: #0071e3;
   box-shadow: 0 0 0 4px rgba(0, 113, 227, 0.15);
   background-color: #ffffff;
 }
 
-/* Botones Nativos */
+/* Botones Apple Style */
 button {
   font-family: inherit;
   font-size: 13px;
   font-weight: 500;
   padding: 8px 16px;
-  border-radius: 980px; /* Pill button de Apple */
+  border-radius: 980px;
   border: none;
   background-color: #0071e3;
   color: #ffffff;
@@ -93,7 +92,6 @@ button:active {
   transform: scale(0.96);
 }
 
-/* Botón secundario tipo System Tint */
 #btnMostrarTodos {
   background-color: #e8e8ed;
   color: #1d1d1f;
@@ -105,7 +103,7 @@ button:active {
   box-shadow: none;
 }
 
-/* Contenedor de Comidas (Grid de Tarjetas) */
+/* Grilla de Tarjetas */
 .comida-container {
   display: flex;
   flex-wrap: wrap;
@@ -115,7 +113,6 @@ button:active {
   margin: 0 auto;
 }
 
-/* Card Component */
 .comida-container article {
   background: #ffffff;
   border-radius: 18px;
@@ -145,7 +142,7 @@ button:active {
   margin-bottom: 4px;
 }
 
-/* Chips / Tags (System Grey Style) */
+/* Etiquetas / Chips */
 .lista-chips {
   display: flex;
   flex-wrap: wrap;
@@ -193,7 +190,6 @@ button:active {
   color: #1d1d1f;
 }
 
-/* Distribución de Inputs de Ingredientes */
 .grid-ingredientes {
   display: flex;
   flex-wrap: wrap;
@@ -216,7 +212,7 @@ button:active {
 }
 
 .addFood button[type="submit"] {
-  background-color: #34c759; /* Verde de confirmación de Apple iOS */
+  background-color: #34c759;
   padding: 10px;
   font-size: 14px;
   font-weight: 600;
