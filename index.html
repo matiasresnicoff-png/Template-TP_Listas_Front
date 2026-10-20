@@ -8,11 +8,10 @@
 </head>
 <body>
     <header>
-      <!-- Para filtros y navegacion -->
       <div class="filtros">
         <div>
           <label for="buscador">Buscar:</label>
-          <input type="text" id="buscador" placeholder="Ej: Asado, Parrilla, Salta o Carne">
+          <input type="text" id="buscador" placeholder="Ej: Asado, Parrilla o Salta">
           <button id="btnBuscar" type="button">Buscar</button>
         </div>
 
@@ -33,14 +32,6 @@
         </div>
 
         <div>
-          <label for="filtroIngredientes">Ingrediente:</label>
-          <select id="filtroIngredientes">
-            <option value="">Todos los ingredientes</option>
-          </select>
-          <button id="btnFiltroIngredientes" type="button">Filtrar por ingrediente</button>
-        </div>
-
-        <div>
           <button id="btnMostrarTodos" type="button">Mostrar todos</button>
         </div>
       </div>
@@ -51,21 +42,25 @@
     </main>     
 
     <section class="addFood">
+      <h2>Agregar Comida</h2>
       <form id="formAgregar">
 
-        <label for="nombre">Nombre de la comida</label>
-        <input type="text" id="nombre" name="nombre" placeholder="Ej: Asado">
+        <label for="nombre">Nombre de la comida:</label>
+        <input type="text" id="nombre" name="nombre" placeholder="Nombre de la comida">
 
-        <label for="categoria">Tipo de comida</label>
-        <input type="text" id="categoria" name="categoria" placeholder="Ej: Parrilla">
+        <label for="provincia">Provincia:</label>
+        <input type="text" id="provincia" name="provincia" placeholder="Provincia">
 
-        <label for="provincia">Provincia</label>
-        <input type="text" id="provincia" name="provincia" placeholder="Ej: Buenos Aires">
+        <label for="categoria">Categoría:</label>
+        <input type="text" id="categoria" name="categoria" placeholder="Categoría">
 
-        <label for="ingredientes">Ingredientes</label>
-        <input type="text" id="ingredientes" name="ingredientes" placeholder="Ej: Carne, Sal, Chimichurri">
+        <label>Ingredientes:</label>
+        <div id="contenedorIngredientes" class="grid-ingredientes">
+          <input type="text" class="input-ingrediente" placeholder="Un ingrediente por box">
+        </div>
 
-        <button type="submit">Agregar comida</button>
+        <button type="button" id="btnAgregarIngrediente">Agregar Ingrediente</button>
+        <button type="submit">Agregar</button>
 
       </form>
     </section>

@@ -1,165 +1,44 @@
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+/* Lista de inputs de ingredientes en 2 columnas con Flexbox */
+.grid-ingredientes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #fdfbf7;
+.grid-ingredientes input {
+  /* Ocupa casi la mitad del espacio menos el espacio del gap */
+  width: calc(50% - 4px); 
+}
+
+/* Chips / etiquetitas de ingredientes usando Flexbox */
+.lista-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.chip {
+  background-color: #e0e0e0;
   color: #333;
-}
-
-/* Header y Barra de Filtros / Buscador */
-header {
-  background-color: #ffffff;
-  padding: 20px;
-  border-bottom: 2px solid #f0e6df;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-}
-
-.filtros {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 12px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.filtros label {
-  font-weight: 600;
-  font-size: 14px;
-  color: #4a3e3d;
-}
-
-/* Inputs y Selects generales */
-input[type="text"],
-select {
-  padding: 9px 12px;
-  border: 1px solid #dcd6d0;
+  padding: 4px 10px;
   border-radius: 6px;
-  font-size: 14px;
-  outline: none;
-  background-color: #fff;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  font-size: 12px;
+  font-weight: 500;
 }
 
-input[type="text"]:focus,
-select:focus {
-  border-color: #e65100;
-  box-shadow: 0 0 0 3px rgba(230, 81, 0, 0.15);
-}
-
-/* Botones en la sección de Filtros */
-.filtros button {
-  background-color: #e65100;
-  color: #ffffff;
+/* Botón secundario para agregar box de ingrediente */
+#btnAgregarIngrediente {
+  background-color: #d1c7bd;
+  color: #333;
   border: none;
-  padding: 9px 16px;
+  padding: 8px;
   border-radius: 6px;
-  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.2s ease, transform 0.1s ease;
+  margin-top: 4px;
 }
 
-.filtros button:hover {
-  background-color: #bf4300;
-}
-
-.filtros button:active {
-  transform: scale(0.98);
-}
-
-/* Botón "Mostrar todos" con tono secundario */
-#btnMostrarTodos {
-  background-color: #6c757d;
-  margin-left: auto;
-}
-
-#btnMostrarTodos:hover {
-  background-color: #5a6268;
-}
-
-/* Contenedor de Tarjetas */
-.comida-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  padding: 24px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.comida-container article {
-  background-color: #ffffff;
-  border: 1px solid #ebdcd0;
-  border-radius: 10px;
-  padding: 18px;
-  width: 260px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.comida-container article:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
-}
-
-.comida-container article h2 {
-  color: #e65100;
-  font-size: 20px;
-  margin-bottom: 10px;
-}
-
-.comida-container article p {
-  font-size: 14px;
-  color: #555;
-  margin-bottom: 6px;
-}
-
-/* Sección Formulario Agregar Comida */
-.addFood {
-  background-color: #ffffff;
-  padding: 24px;
-  margin: 20px auto 40px auto;
-  max-width: 500px;
-  border-radius: 12px;
-  border: 1px solid #ebdcd0;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
-}
-
-.addFood form {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-
-.addFood label {
-  font-weight: 600;
-  font-size: 14px;
-  color: #4a3e3d;
-  margin-bottom: -6px;
-}
-
-.addFood button {
-  background-color: #2e7d32;
-  color: white;
-  border: none;
-  padding: 12px;
-  border-radius: 6px;
-  font-size: 15px;
-  font-weight: bold;
-  cursor: pointer;
-  margin-top: 8px;
-  transition: background-color 0.2s ease, transform 0.1s ease;
-}
-
-.addFood button:hover {
-  background-color: #1b5e20;
-}
-
-.addFood button:active {
-  transform: scale(0.98);
+#btnAgregarIngrediente:hover {
+  background-color: #bcaea0;
 }

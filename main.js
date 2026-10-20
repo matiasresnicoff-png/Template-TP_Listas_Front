@@ -1,6 +1,4 @@
-/*
-    Cargar comidas en memoria desde el JSON
-*/
+/*  Cargar comidas en memoria desde el JSON*/
 fetch('./data/comidas.json')          // Ruta al archivo JSON
   .then(function (response) {         // Convertir la respuesta en JSON
     return response.json();
@@ -20,16 +18,16 @@ let comidas = [];
 
 const container = document.getElementById('comidaContainer');
 const formulario = document.getElementById('formAgregar');
+const contenedorIngredientes = document.getElementById('contenedorIngredientes');
+const btnAgregarIngrediente = document.getElementById('btnAgregarIngrediente');
 
 const filtroCategoria = document.getElementById('filtroCategoria');
 const filtroProvincia = document.getElementById('filtroProvincia');
-const filtroIngredientes = document.getElementById('filtroIngredientes');
 const buscador = document.getElementById('buscador');
 
 const btnBuscar = document.getElementById('btnBuscar');
 const btnFiltroCategoria = document.getElementById('btnFiltroCategoria');
 const btnFiltroProvincia = document.getElementById('btnFiltroProvincia');
-const btnFiltroIngredientes = document.getElementById('btnFiltroIngredientes');
 const btnMostrarTodos = document.getElementById('btnMostrarTodos');
 
 function mostrarComidas(lista) {
@@ -42,11 +40,18 @@ function mostrarComidas(lista) {
   lista.forEach(function (comida) {
     const tarjeta = document.createElement('article');
 
+    // Generar las etiquetitas de ingredientes
+    let HTMLIngredientes = '<div class="lista-chips">';
+    comida.ingredientes.forEach(function (ing) {
+      HTMLIngredientes += '<span class="chip">' + ing + '</span>';
+    });
+    HTMLIngredientes += '</div>';
+
     tarjeta.innerHTML = `
       <h2>${comida.nombre}</h2>
       <p>Categoría: ${comida.categoria}</p>
       <p>Provincia: ${comida.provincia}</p>
-      <p>Ingredientes: ${comida.ingredientes.join(', ')}</p>
+      ${HTMLIngredientes}
     `;
 
     container.appendChild(tarjeta);
@@ -56,11 +61,9 @@ function mostrarComidas(lista) {
 function cargarFiltrosOpciones() {
   filtroCategoria.innerHTML = '<option value="">Todas las categorías</option>';
   filtroProvincia.innerHTML = '<option value="">Todas las provincias</option>';
-  filtroIngredientes.innerHTML = '<option value="">Todos los ingredientes</option>';
 
   const categorias = [];
   const provincias = [];
-  const ingredientesUnicos = [];
 
   comidas.forEach(function (comida) {
     if (!categorias.includes(comida.categoria)) {
@@ -69,12 +72,6 @@ function cargarFiltrosOpciones() {
     if (!provincias.includes(comida.provincia)) {
       provincias.push(comida.provincia);
     }
-    comida.ingredientes.forEach(function (ing) {
-      const ingredienteLimpio = ing.trim();
-      if (!ingredientesUnicos.includes(ingredienteLimpio)) {
-        ingredientesUnicos.push(ingredienteLimpio);
-      }
-    });
   });
 
   categorias.forEach(function (cat) {
@@ -90,20 +87,28 @@ function cargarFiltrosOpciones() {
     option.textContent = prov;
     filtroProvincia.appendChild(option);
   });
-
-  ingredientesUnicos.forEach(function (ing) {
-    const option = document.createElement('option');
-    option.value = ing;
-    option.textContent = ing;
-    filtroIngredientes.appendChild(option);
-  });
 }
+
+// Botón para agregar un nuevo box de ingrediente
+btnAgregarIngrediente.addEventListener('click', function () {
+  const nuevoInput = document.createElement('input');
+  nuevoInput.type = 'text';
+  nuevoInput.className = 'input-ingrediente';
+  nuevoInput.placeholder = 'Un ingrediente por box';
+  contenedorIngredientes.appendChild(nuevoInput);
+});
 
 formulario.addEventListener('submit', function (evento) {
   evento.preventDefault();
 
-  const listaIngredientes = evento.target.ingredientes.value.split(',').map(function (i) {
-    return i.trim();
+  // Guardar todos los inputs de ingredientes que tengan texto
+  const inputsIngredientes = document.querySelectorAll('.input-ingrediente');
+  const listaIngredientes = [];
+
+  inputsIngredientes.forEach(function (input) {
+    if (input.value.trim() !== '') {
+      listaIngredientes.push(input.value.trim());
+    }
   });
 
   const nuevaComida = {
@@ -121,6 +126,9 @@ formulario.addEventListener('submit', function (evento) {
 
   alert('Comida recibida');
   formulario.reset();
+
+  // Resetear los campos de ingredientes dejando solo 1 box
+  contenedorIngredientes.innerHTML = '<input type="text" class="input-ingrediente" placeholder="Un ingrediente por box">';
 });
 
 // Buscador general con OR (||)
@@ -168,22 +176,9 @@ btnFiltroProvincia.addEventListener('click', function () {
   }
 });
 
-btnFiltroIngredientes.addEventListener('click', function () {
-  const seleccion = filtroIngredientes.value;
-  if (seleccion === '') {
-    mostrarComidas(comidas);
-  } else {
-    const filtradas = comidas.filter(function (comida) {
-      return comida.ingredientes.includes(seleccion);
-    });
-    mostrarComidas(filtradas);
-  }
-});
-
 btnMostrarTodos.addEventListener('click', function () {
   buscador.value = '';
   filtroCategoria.value = '';
   filtroProvincia.value = '';
-  filtroIngredientes.value = '';
   mostrarComidas(comidas);
 });
