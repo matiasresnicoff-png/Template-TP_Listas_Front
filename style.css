@@ -1,134 +1,199 @@
+/* Reset básico con modelo de caja */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  -webkit-font-smoothing: antialiased;
 }
 
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
-  color: #333;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+  background-color: #f5f5f7; /* Color de fondo oficial de Apple */
+  color: #1d1d1f;
+  line-height: 1.47059;
+  letter-spacing: -0.022em;
 }
 
-/* Header y Filtros */
+/* Header Translucido tipo Glassmorphism (Apple Bar) */
 header {
-  background-color: #ffffff;
-  padding: 16px;
-  border-bottom: 2px solid #ddd;
-  margin-bottom: 20px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  padding: 16px 24px;
+  margin-bottom: 32px;
 }
 
 .filtros {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 12px;
-  max-width: 1100px;
+  gap: 16px;
+  max-width: 1140px;
   margin: 0 auto;
 }
 
 .filtros div {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
 }
 
 .filtros label {
-  font-weight: bold;
-  font-size: 14px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #86868b;
 }
 
+/* Controls (Inputs & Selects) al estilo iOS / macOS */
 input[type="text"],
 select {
-  padding: 6px 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  font-family: inherit;
   font-size: 14px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 1px solid #d2d2d7;
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #1d1d1f;
+  outline: none;
+  transition: all 0.2s cubic-bezier(0, 0, 0.58, 1);
 }
 
+input[type="text"]:focus,
+select:focus {
+  border-color: #0071e3; /* Azul primario Apple */
+  box-shadow: 0 0 0 4px rgba(0, 113, 227, 0.15);
+  background-color: #ffffff;
+}
+
+/* Botones Nativos */
 button {
-  padding: 6px 12px;
-  border: 1px solid #aaa;
-  border-radius: 4px;
-  background-color: #e0e0e0;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 980px; /* Pill button de Apple */
+  border: none;
+  background-color: #0071e3;
+  color: #ffffff;
   cursor: pointer;
-  font-size: 14px;
+  transition: all 0.2s ease;
+  user-select: none;
 }
 
 button:hover {
-  background-color: #d0d0d0;
+  background-color: #0077ed;
+  box-shadow: 0 2px 8px rgba(0, 113, 227, 0.25);
 }
 
-/* Tarjetas */
+button:active {
+  transform: scale(0.96);
+}
+
+/* Botón secundario tipo System Tint */
+#btnMostrarTodos {
+  background-color: #e8e8ed;
+  color: #1d1d1f;
+  margin-left: auto;
+}
+
+#btnMostrarTodos:hover {
+  background-color: #d2d2d7;
+  box-shadow: none;
+}
+
+/* Contenedor de Comidas (Grid de Tarjetas) */
 .comida-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 16px;
-  padding: 0 20px;
-  max-width: 1200px;
+  gap: 24px;
+  padding: 0 24px;
+  max-width: 1140px;
   margin: 0 auto;
 }
 
+/* Card Component */
 .comida-container article {
-  background-color: #ffffff;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 16px;
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 24px;
   width: 260px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.comida-container article:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
 }
 
 .comida-container article h2 {
-  color: #e65100;
+  font-size: 20px;
+  font-weight: 600;
+  color: #1d1d1f;
+  letter-spacing: -0.015em;
   margin-bottom: 8px;
 }
 
 .comida-container article p {
-  margin-bottom: 6px;
-  font-size: 14px;
+  font-size: 13px;
+  color: #86868b;
+  margin-bottom: 4px;
 }
 
-/* Chips / Etiquetas */
+/* Chips / Tags (System Grey Style) */
 .lista-chips {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
-  margin-top: 10px;
+  margin-top: 16px;
 }
 
 .chip {
-  background-color: #e0e0e0;
-  color: #333;
-  padding: 4px 8px;
-  border-radius: 4px;
+  background-color: #f2f2f7;
+  color: #1d1d1f;
+  padding: 4px 10px;
+  border-radius: 6px;
   font-size: 12px;
+  font-weight: 500;
 }
 
-/* Formulario */
+/* Formulario "Agregar Comida" */
 .addFood {
-  background-color: #ffffff;
-  padding: 20px;
-  margin: 30px auto;
-  max-width: 450px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 32px;
+  margin: 48px auto;
+  max-width: 460px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.04);
 }
 
 .addFood h2 {
-  margin-bottom: 12px;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin-bottom: 20px;
+  color: #1d1d1f;
 }
 
 .addFood form {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 14px;
 }
 
 .addFood label {
-  font-weight: bold;
-  font-size: 14px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #1d1d1f;
 }
 
+/* Distribución de Inputs de Ingredientes */
 .grid-ingredientes {
   display: flex;
   flex-wrap: wrap;
@@ -139,14 +204,26 @@ button:hover {
   width: calc(50% - 4px);
 }
 
+#btnAgregarIngrediente {
+  background-color: #f2f2f7;
+  color: #0071e3;
+  margin-top: 4px;
+}
+
+#btnAgregarIngrediente:hover {
+  background-color: #e5e5ea;
+  box-shadow: none;
+}
+
 .addFood button[type="submit"] {
-  background-color: #4caf50;
-  color: white;
-  border: none;
+  background-color: #34c759; /* Verde de confirmación de Apple iOS */
   padding: 10px;
-  font-weight: bold;
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 12px;
 }
 
 .addFood button[type="submit"]:hover {
-  background-color: #45a049;
+  background-color: #2fb350;
+  box-shadow: 0 2px 10px rgba(52, 199, 89, 0.3);
 }
