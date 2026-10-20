@@ -10,23 +10,39 @@
     <header>
       <!-- Para filtros y navegacion -->
       <div class="filtros">
-        <label for="buscador">Buscar:</label>
-        <input type="text" id="buscador" placeholder="Ej: Asado, Parrilla o Salta">
-        <button id="btnBuscar" type="button">Buscar</button>
+        <div>
+          <label for="buscador">Buscar:</label>
+          <input type="text" id="buscador" placeholder="Ej: Asado, Parrilla, Salta o Carne">
+          <button id="btnBuscar" type="button">Buscar</button>
+        </div>
 
-        <label for="filtroCategoria">Categoría:</label>
-        <select id="filtroCategoria">
-          <option value="">Todas las categorías</option>
-        </select>
-        <button id="btnFiltroCategoria" type="button">Filtrar por categoría</button>
+        <div>
+          <label for="filtroCategoria">Categoría:</label>
+          <select id="filtroCategoria">
+            <option value="">Todas las categorías</option>
+          </select>
+          <button id="btnFiltroCategoria" type="button">Filtrar por categoría</button>
+        </div>
 
-        <label for="filtroProvincia">Provincia:</label>
-        <select id="filtroProvincia">
-          <option value="">Todas las provincias</option>
-        </select>
-        <button id="btnFiltroProvincia" type="button">Filtrar por provincia</button>
+        <div>
+          <label for="filtroProvincia">Provincia:</label>
+          <select id="filtroProvincia">
+            <option value="">Todas las provincias</option>
+          </select>
+          <button id="btnFiltroProvincia" type="button">Filtrar por provincia</button>
+        </div>
 
-        <button id="btnMostrarTodos" type="button">Mostrar todos</button>
+        <div>
+          <label for="filtroIngredientes">Ingrediente:</label>
+          <select id="filtroIngredientes">
+            <option value="">Todos los ingredientes</option>
+          </select>
+          <button id="btnFiltroIngredientes" type="button">Filtrar por ingrediente</button>
+        </div>
+
+        <div>
+          <button id="btnMostrarTodos" type="button">Mostrar todos</button>
+        </div>
       </div>
     </header>
 

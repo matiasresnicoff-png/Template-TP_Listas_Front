@@ -23,11 +23,13 @@ const formulario = document.getElementById('formAgregar');
 
 const filtroCategoria = document.getElementById('filtroCategoria');
 const filtroProvincia = document.getElementById('filtroProvincia');
+const filtroIngredientes = document.getElementById('filtroIngredientes');
 const buscador = document.getElementById('buscador');
 
 const btnBuscar = document.getElementById('btnBuscar');
 const btnFiltroCategoria = document.getElementById('btnFiltroCategoria');
 const btnFiltroProvincia = document.getElementById('btnFiltroProvincia');
+const btnFiltroIngredientes = document.getElementById('btnFiltroIngredientes');
 const btnMostrarTodos = document.getElementById('btnMostrarTodos');
 
 function mostrarComidas(lista) {
@@ -54,9 +56,11 @@ function mostrarComidas(lista) {
 function cargarFiltrosOpciones() {
   filtroCategoria.innerHTML = '<option value="">Todas las categorías</option>';
   filtroProvincia.innerHTML = '<option value="">Todas las provincias</option>';
+  filtroIngredientes.innerHTML = '<option value="">Todos los ingredientes</option>';
 
   const categorias = [];
   const provincias = [];
+  const ingredientesUnicos = [];
 
   comidas.forEach(function (comida) {
     if (!categorias.includes(comida.categoria)) {
@@ -65,6 +69,12 @@ function cargarFiltrosOpciones() {
     if (!provincias.includes(comida.provincia)) {
       provincias.push(comida.provincia);
     }
+    comida.ingredientes.forEach(function (ing) {
+      const ingredienteLimpio = ing.trim();
+      if (!ingredientesUnicos.includes(ingredienteLimpio)) {
+        ingredientesUnicos.push(ingredienteLimpio);
+      }
+    });
   });
 
   categorias.forEach(function (cat) {
@@ -79,6 +89,13 @@ function cargarFiltrosOpciones() {
     option.value = prov;
     option.textContent = prov;
     filtroProvincia.appendChild(option);
+  });
+
+  ingredientesUnicos.forEach(function (ing) {
+    const option = document.createElement('option');
+    option.value = ing;
+    option.textContent = ing;
+    filtroIngredientes.appendChild(option);
   });
 }
 
@@ -106,7 +123,7 @@ formulario.addEventListener('submit', function (evento) {
   formulario.reset();
 });
 
-// Buscador triple con OR (||)
+// Buscador general con OR (||)
 btnBuscar.addEventListener('click', function () {
   const texto = buscador.value.toLowerCase().trim();
 
@@ -114,9 +131,14 @@ btnBuscar.addEventListener('click', function () {
     mostrarComidas(comidas);
   } else {
     const filtradas = comidas.filter(function (comida) {
+      const coincideIngrediente = comida.ingredientes.some(function (ing) {
+        return ing.toLowerCase().includes(texto);
+      });
+
       return comida.nombre.toLowerCase().includes(texto) ||
              comida.categoria.toLowerCase().includes(texto) ||
-             comida.provincia.toLowerCase().includes(texto);
+             comida.provincia.toLowerCase().includes(texto) ||
+             coincideIngrediente;
     });
     mostrarComidas(filtradas);
   }
@@ -146,9 +168,22 @@ btnFiltroProvincia.addEventListener('click', function () {
   }
 });
 
+btnFiltroIngredientes.addEventListener('click', function () {
+  const seleccion = filtroIngredientes.value;
+  if (seleccion === '') {
+    mostrarComidas(comidas);
+  } else {
+    const filtradas = comidas.filter(function (comida) {
+      return comida.ingredientes.includes(seleccion);
+    });
+    mostrarComidas(filtradas);
+  }
+});
+
 btnMostrarTodos.addEventListener('click', function () {
   buscador.value = '';
   filtroCategoria.value = '';
   filtroProvincia.value = '';
+  filtroIngredientes.value = '';
   mostrarComidas(comidas);
 });
